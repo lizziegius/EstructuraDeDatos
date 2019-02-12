@@ -1,0 +1,28 @@
+// ejercicio 1.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"//librerias
+#include <iostream>//habilita usar cin y cout
+#include "conio.h"
+
+using namespace std;
+
+float devprecio(float a);//Prototipos
+
+void main(){
+	float precio,b;//Tipo de datos
+	cout<<"Ingresar el precio: ";
+	cin>>precio;
+	b=devprecio(precio);
+	cout<<"El precio es: "<<b<<endl;
+	getch();
+}
+
+float devprecio(float a){
+	float IVA=0.13;
+	float iva2,nuevprecio,d;
+	d=a;
+	iva2=a*IVA;
+	nuevprecio=d+iva2;
+	return(nuevprecio);
+}
