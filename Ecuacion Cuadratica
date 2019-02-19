@@ -1,0 +1,65 @@
+// ejfunciones.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "math.h"
+
+using namespace std;
+
+float discriminante(float a, float b, float c);
+float reales (float d, float a , float b, float &x1);//se puede usar float utilizando &
+float unica(float a, float b);
+
+void main(){
+	 float a,b,c,d,x1,x2;
+	 char resp;//Char permite ingresa letras en variables en este caso variable r y podes utilizar letras con una comilla ejm 's'
+	 do{
+		 do{
+			 cout<<"Ingrese a: ";
+			 cin>>a;
+		 } while(a==0);//Si a=0 vuelve a pedir a
+		 cout<<"Ingrese b: ";
+		 cin>>b;
+		 cout<<"Ingrese c: ";
+		 cin>>c;
+		 d=discriminante(a,b,c);
+		 if(d==0){
+			 cout<<"Solucion unica: "<<unica(a,b)<<endl;
+		 } else{ 
+			 if(d>0){
+				 cout<<"Soluciones reales: "<<endl;
+				 cout<<"Solucion x1: "<<reales(d,a,b,x1)<<endl;//muestra el otro valor en que se uso return(se puede usar tambien &x2)
+				 cout<<"Solucion x2: "<<x1<<endl;//muestra el x1
+			 } else{
+				 cout<<"Solucion imaginarias: "<<endl;
+				 cout<<"Solucion x1: "<<-b/(2*a)<<"+"<<sqrt(-d)/(2*a)<<"i"<<endl;
+				 cout<<"Solucion x2: "<<-b/(2*a)<<"-"<<sqrt(-d)/(2*a)<<"i"<<endl;
+			 }
+		 }
+		 cout<<"Desea continuar?(s)"<<endl;
+		 cin>>resp;//En la repuesta se guarda lo que pone letra
+	 } while(resp=='s');//Entras S y te sigue pidiendo a, b, c para hacer el ejercicio
+
+getch();
+}
+
+float discriminante(float a, float b, float c){
+	float d;
+	d=(b*b)-(4*a*c);
+	return d;
+}
+
+float reales(float d, float a, float b, float &x1){//variable por referencia es la que retorna directa para la otra utliazamos return
+	float x2;
+	x2=(-b+sqrt(d))/(2*a);
+	x1=(-b-sqrt(d))/(2*a);
+	return(x2);
+}
+
+float unica(float a, float b){
+	float x1;
+	x1=-b/(2*a);
+	return(x1);
+}
