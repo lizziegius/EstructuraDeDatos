@@ -1,0 +1,29 @@
+// ejfunciones.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+
+float POTEN(float x, float y);
+
+void main(){
+	float x,y,s;
+	cout<<"Ingrese la base: ";
+	cin>>x;
+	cout<<"Ingrese el exponente: ";
+	cin>>y;
+	s=POTEN(x,y);
+	cout<<"La potencia es: "<<s<<endl;
+	getch();
+}
+
+float POTEN(float x, float y){
+	float p=1;
+	for(int i=1;i<=y;i++){
+		p=p*x;//acumulador multiplica por la base
+	}
+	return p;
+}
