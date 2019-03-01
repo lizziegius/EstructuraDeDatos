@@ -1,0 +1,65 @@
+Paralelogramo.h
+#pragma once
+class Paralelogramo
+{
+private:
+	float base;
+	float altura;
+public:
+	Paralelogramo(float _base, float _altura);
+	~Paralelogramo(void);
+	float perimetro();
+	float area();
+};
+
+Paralelogramo.cpp
+#include "StdAfx.h"
+#include "Paralelogramo.h"
+
+
+Paralelogramo::Paralelogramo(float _base, float _altura)
+{
+	base= _base;
+	altura= _altura;
+}
+
+
+Paralelogramo::~Paralelogramo(void)
+{
+}
+
+float Paralelogramo::perimetro(){
+	float aux;
+	aux=(2*base)+(2*altura);
+	return aux;
+}
+
+float Paralelogramo::area(){
+	float a;
+	a=base*altura;
+	return(a);
+}
+
+
+ejemplo paralelogramo main
+#include "stdafx.h"
+#include "Paralelogramo.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+
+void main(){
+	float b,h;
+	cout<<"Ingrese la base"<<endl;
+	cin>>b;
+	cout<<"Ingrese la altura "<<endl;
+	cin>>h;
+	Paralelogramo p1(b,h);
+	cout<<"El perimetro es "<<p1.perimetro()<<endl;
+	cout<<"El area es"<<p1.area()<<endl;
+	getch();
+}
+
+
+
