@@ -1,0 +1,59 @@
+Clase Persona.h
+#pragma once
+class Persona
+{
+private:
+	int edad;
+	int CI;
+public:
+	Persona(int _edad,int _ci);
+	~Persona(void);
+	void leer();
+	void correr();
+};
+
+Persona.cpp
+#include "StdAfx.h"
+#include "Persona.h"
+#include "iostream"
+
+using namespace std;
+
+
+Persona::Persona(int _edad, int _ci)
+{
+	edad= _edad;
+	CI= _ci;
+}//Le da valor al atributo
+
+
+Persona::~Persona(void)
+{
+}
+
+void Persona::leer(){
+	cout<<"Soy "<<CI<<" y estoy leyendo"<<endl;
+}//Utiliza directamente el valor del atributo por eso no la declara como parametro
+
+void Persona::correr(){
+	cout<<"Soy "<<CI<<" tengo "<<edad<<" y estoy corriendo"<<endl;
+}
+
+Persona main
+
+#include "stdafx.h"
+#include "Persona.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+
+void main(){
+	Persona p1(23,4370);//es como un tipo de variable el Persona
+	Persona p2=Persona(50,3873);
+	p1.leer();
+	p1.correr();
+	p2.correr();
+	getch();
+}
+
