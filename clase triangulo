@@ -1,0 +1,60 @@
+Triangulo.h
+#pragma once
+class Triangulo
+{
+private:
+	float base;
+	float altura;
+public:
+	Triangulo(void);
+	~Triangulo(void);
+	float area();//utiliza los valores asignados a los atributos
+	float area(float _base, float _altura);//se le asigna valores
+};
+
+Triangulo.cpp
+#include "StdAfx.h"
+#include "Triangulo.h"
+
+
+Triangulo::Triangulo(void)
+{
+	base=10;
+	altura=15;
+}
+
+
+Triangulo::~Triangulo(void)
+{
+}
+
+float Triangulo::area(){
+	float aux;
+	aux=(base*altura)/2;
+	return aux;
+}
+
+float Triangulo::area(float _base,float _altura){
+	float aux;
+	aux=(_base*_altura)/2;
+	return aux;
+}
+
+ejemplo triangulo main
+
+#include "stdafx.h"
+#include "Triangulo.h"
+#include <iostream>
+#include "conio.h"
+
+using namespace std;
+
+
+void main(){
+	Triangulo t1;
+	cout<<"El area del traingulo es "<<t1.area()<<endl;
+	cout<<"El area del triangulo es "<<t1.area(12,7)<<endl;//polimorfismo mismo metodo aplicado de diferente forma
+	getch();
+}
+
+
