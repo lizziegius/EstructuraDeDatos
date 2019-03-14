@@ -1,0 +1,268 @@
+Vector.h
+#pragma once
+class Vector
+{
+private:
+	int n;
+	int vec[50];
+public:
+	Vector(int a);
+	~Vector(void);
+	void cargar();
+	void mostrar();//Con este metodo me muestra el vector del atributo
+	void mostrar(int v[50]);//Este metodo me muestra el vector que no sea del atributo
+	int mayor();
+	int menor();
+    float promedio();
+	void revertir(int v[50]);//Le mando un vector vacio desde el main
+	bool capicua();
+	int difgrande();
+	int negativos();
+	int positivos();
+	int ceros();
+	void ordenasc();
+	void eliminar();
+	void revertir();
+	void cargar_fibonacci();
+};
+
+Vector.cpp
+
+#include "StdAfx.h"
+#include "Vector.h"
+#include <iostream>
+
+using namespace std;
+
+
+Vector::Vector(int a)
+{
+	n=a;
+}
+
+
+Vector::~Vector(void)
+{
+}
+
+void Vector::cargar(){
+	for(int i=0;i<n;i++){
+		cout<<"Vec["<<i<<"]=";
+		cin>>vec[i];
+	}
+}
+
+
+void Vector::mostrar(){
+	for(int i=0;i<n;i++){
+		cout<<vec[i];
+	}
+}
+
+void Vector::mostrar(int v[]){
+	for(int i=0;i<n;i++){
+		cout<<v[i];
+	}
+}
+int Vector::mayor(){
+	int may;
+	may=vec[0];
+	for(int i=1;i<n;i++){
+		if(may<vec[i]){
+			may=vec[i];
+		}
+	}
+	return may;
+}
+
+int Vector::menor(){
+	int men;
+	men=vec[0];
+	for(int i=1;i<n;i++){
+		if(men>vec[i]){
+			men=vec[i];
+		}
+	}
+	return men;
+}
+
+float Vector::promedio(){
+	float p=0,prom;
+	for(int i=0;i<n;i++){
+		p=p+vec[i];
+	}
+	prom=(p/n);
+	return prom;
+}
+
+void Vector::revertir(int v[]){
+	for(int i=0;i<n;i++){
+		v[i]=vec[n-(i+1)];
+	}
+	mostrar(v);//muestro el otro vector que no es el del atributo
+	
+}
+
+bool Vector::capicua(){
+	int dim,j;
+	dim=n/2;
+	j=n-1;
+	for(int i=0;i<dim;i++){
+		if(vec[i]!=vec[j]){
+			return(false);
+		}
+		j--;
+	}
+	return(true);
+}
+
+int Vector::difgrande(){
+	int may,a;
+	may=(vec[0]-vec[1]);
+	for(int i=1;i<n;i++){
+		a=vec[i]-vec[i++];
+		if(a>may){
+			a=may;
+		}
+	}
+	return may;
+}
+
+int Vector::negativos(){
+	int n=0;
+	for(int i=0;i<n;i++){
+		if(vec[i]<0){
+			n++;
+		}
+	}
+	return n;
+}
+
+int Vector::positivos(){
+	int p=0;
+	for(int i=0;i<n;i++){
+		if(vec[i]>0){
+			p++;
+		}
+	}
+	return p;
+}
+
+int Vector::ceros(){
+	int c=0;
+	for(int i=0;i<n;i++){
+		if(vec[i]==0){
+			c++;
+		}
+	}
+	return c;
+}
+
+void Vector::ordenasc(){
+	int aux;
+	for(int i = 0; i <(n-1); i ++) {
+		 for(int j = i; j <n; j ++) {
+			if (vec [i]> vec [j]) {
+				aux = vec [i];
+				vec [i] = vec [j];
+				vec [j] = aux;
+			}
+		 }
+	}
+}
+
+void Vector::eliminar(){
+	ordenasc();
+	int k;
+	for(int i=0;i<(n-1);i++){
+		for(int j=(i+1);j<n;j++){
+			if(vec[i]==vec[j]){
+				k=j;
+				while(k<n){
+					vec[k]=vec[k+1];
+				}
+				n--;
+				j--;
+			}
+		}
+	}
+}
+
+void Vector::revertir(){
+	int aux,j=(n-1);
+	for(int i=0;i<n;i++){
+		aux=vec[i];
+		vec[i]=vec[j];
+		vec[j]=aux;
+		j--;
+	}
+	mostrar(vec);
+}
+
+void Vector::cargar_fibonacci(){
+	int x=0,y=1,z=1;
+	vec[0]=1;
+	for(int i=1;i<n;i++){
+		z=x+y;
+		vec[i]=z;
+		x=y;//x es igual a lo que era y al nro anterior
+		y=z;//y se vuelve el valor que dio z
+	}
+}
+
+ejemplovector.cpp
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "Vector.h"
+#define MAX 50
+
+using namespace std;
+
+void main(){
+	int tam,v[MAX],m,p,c;
+	do{
+	cout<<"Ingrese el tamanio del vector1: ";
+	cin>>tam;
+	} while(tam<=0);
+	Vector v1(tam);
+	v1.cargar();
+	cout<<"El mayor es: "<<v1.mayor()<<endl;
+	cout<<"El menor es: "<<v1.menor()<<endl;
+	cout<<"El promedio es: "<<v1.promedio()<<endl;
+	cout<<"El vector revertido es: ";
+	v1.revertir(v);
+	cout<<"Es capicua? "<<endl;
+	if(v1.capicua()==true){
+		cout<<"El vector es capicua"<<endl;
+	}else{
+		cout<<"El vector no es capicua"<<endl;
+	}
+	cout<<"La mayor diferencia entre elementos consecutivos del vector es: "<<v1.difgrande()<<endl;
+	cout<<"Hay "<<v1.positivos()<<" positivos, "<<v1.negativos()<<" negativos y "<<v1.ceros()<<" ceros en el vector"<<endl;
+	do{
+	cout<<"Ingrese el tamanio del vector2: ";
+	cin>>m;
+	} while(m<=0);
+	Vector v2(m);
+	v2.cargar();
+	cout<<"Revertir en vector: "<<endl;
+	v2.revertir();
+	cout<<"Ordenar ascendente"<<endl;
+	v1.ordenasc();
+	v1.mostrar();
+	do{
+		cout<<"Ingrese el tamanio del vector1: ";
+	cin>>p;
+	} while(p<=0);
+	Vector v3(p);
+	cout<<"Serie fibonacci es: ";
+	v3.cargar_fibonacci();
+	v3.mostrar();
+	cout<<"Eliminar repetidos: ";
+	v1.eliminar();
+	getch();
+}
+
+
