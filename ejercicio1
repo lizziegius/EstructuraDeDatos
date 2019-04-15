@@ -1,0 +1,20 @@
+#include "stdafx.h"
+#include <iostream>
+#include "stdlib.h"
+#include "conio.h"
+utilizando namespace std;
+
+vacío _tmain ()
+
+{float p, d; 
+
+ hacer
+  {cout << "Ingrese el precio del producto";
+    cin >> p;
+  } while (p <= 0);
+  
+   d = p * 0,50;
+   
+cout << "EL DESCUENTO EN DE" << d << "bs";
+getch ();
+}
