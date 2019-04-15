@@ -1,0 +1,190 @@
+** tarea **
+--Fecha.h--
+#pragma una vez
+#include <string>
+utilizando namespace std;
+clase Fecha
+{
+privado:
+	int dd, mm, aa;
+público:
+	Fecha (int _dd, int _mm, int _aa);
+	Fecha (cadena fecha);
+	Fecha (fecha larga);
+	~ Fecha (nulo);
+	bool validarfecha ();
+	int devolverdd ();
+	int devolvermm ();
+	int devolveraa ();
+};
+
+--Fecha.cpp--
+
+#include "StdAfx.h"
+#include "Fecha.h"
+#include <string>
+utilizando namespace std;
+
+
+Fecha :: Fecha (int _dd, int _mm, int _aa)
+{
+	dd = _dd;
+	mm = _mm;
+	aa = _aa;
+}
+
+Fecha :: Fecha (cadena fecha)
+{dd = (atoi (fecha.substr (0,2) .c_str ()));
+	mm = (atoi (fecha.substr (3,5) .c_str ()));
+	aa = (atoi (fecha.substr (6,4) .c_str ()));
+}
+Fecha :: Fecha
+{
+	dd = fecha / 1000000;
+	mm = (fecha- (dd * 1000000)) / 10000;
+	aa = (fecha- (dd * 1000000) - (mm * 1000));
+}
+
+
+Fecha :: ~ Fecha (nula)
+{
+}
+bool Fecha :: validarfecha ()
+{
+	bool t = verdadero;
+   si (mm> = 1 && mm <= 12) {
+	   si (mm == 1 || mm == 3 || mm == 5 || mm == 7 || mm == 8 || mm == 10 || mm == 12)
+	     si (dd> = 1 && dd <= 31)
+		   devuelve t;
+	     más 
+		   t = falso;
+	   más
+		   si (mm == 4 || mm == 6 || mm == 9 || mm == 11)
+	           si (dd> = 1 && dd <= 30)
+				   devuelve t;
+		       más 
+				   t = falso;
+		   más 
+			   // febrero
+			   si (aa% 400 == 0 || (aa% 4 == 0 && aa% 100! = 0))
+				  si (dd> = 1 && dd <= 29)
+					  devuelve t;
+				  más 
+					  t = falso;
+			   más
+				   si (dd> = 1 && dd <= 28)
+					   devuelve t;
+				   más 
+					   t = falso;
+   }
+   más
+	   t = falso;
+   devuelve t;
+
+}
+int Fecha :: devolverdd () {
+	return dd;
+}
+int Fecha :: devolvermm () {
+	volver mm
+}
+int Fecha :: devolveraa () {
+	devuelve aa;
+}
+
+--principal--
+
+#include "stdafx.h"
+#include "conio.h"
+#include <iostream>
+#include "Fecha.h"
+#include <string>
+
+utilizando namespace std;
+void f ();
+void ff ();
+void fe ();
+
+vacío principal()
+{
+	int dd, mm, aa, op;
+	cadena fecha
+	larga fecha1;
+	hacer{
+		cout << "----- MENU -----" << endl;
+		cout << "| 1.- Fecha de forma` `19/07 / 1999``. |" << endl;
+		cout << "| 2.- fecha de forma` `19071999``. |" << endl;
+		cout << "| 3.- Fecha de forma` `dia = 19; mes = 10; año = 1999. |" << endl;
+		cout << "| 0.- Salir. |" << endl;
+		cout << "---------------------------------------------- ---- "<< endl;
+		cout << "Elija una opcion" << endl;
+		cin >> op;
+		interruptor (op) {
+		caso 1:
+			F();
+			descanso;
+		caso 2:
+			ff ();
+			descanso;
+		caso 3:
+			fe ();
+			descanso;
+		caso 0: 
+			cout << "Salir" << endl;
+			descanso;
+		defecto:
+			cout << "Error: Opcion no valida ..." << endl;
+			descanso;
+		}
+	} while (op! = 0);
+	getch ();
+}
+vacío f ()
+{int d, m, a;
+    cadena fecha_;
+    cin.ignore ();
+	getline (cin, fecha_);
+	Fecha f1 (fecha_);
+	d = f1.devolverdd ();
+	m = f1.devolvermm ();
+	a = f1.devolveraa ();
+
+	if (f1.validarfecha () == true)
+	{
+		cout << "la fecha es valida". << d << "/" << m << "/" << a;
+	}más 
+	{
+		cout << "la fecha no es valida";
+	}
+}
+void ff ()
+{
+	int d, m, a;
+	int fecha1;
+	cin >> fecha1;
+	Fecha f2 (fecha1);
+	if (f2.validarfecha () == true)
+	{
+		cout << "la fecha es valida". << d << "/" << m << "/" << a;
+	}más 
+	{
+		cout << "la fecha no es valida";
+	}
+}
+void fe ()
+{int d, m, a;
+	cout << "ingrese el dia:";
+	cin >> d;
+	cout << "ingrese el mes:";
+	cin >> m;
+	cout << "ingrese el año:";
+	cin >> a;
+	Fecha f3 (d, m, a);
+	if (f3.validarfecha () == true)
+	{
+		cout << "la fecha es valida". << d << "/" << m << "/" << a;
+	}más 
+	{
+		cout << "la fecha no es valida";
+	}
+}
