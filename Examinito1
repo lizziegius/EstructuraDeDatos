@@ -1,0 +1,203 @@
+1-.
+Esfera.h
+#pragma once
+class Esfera
+{
+private:
+	float radio;
+public:
+	Esfera(float _radio);
+	~Esfera(void);
+	float area();
+};
+
+Esfera.cpp
+#include "StdAfx.h"
+#include "Esfera.h"
+
+
+Esfera::Esfera(float _radio)
+{
+	radio=-_radio;
+}
+
+
+Esfera::~Esfera(void)
+{
+}
+
+float Esfera::area(){
+	float aux;
+	aux=4*3.1416*radio*radio;
+	return aux;
+}
+
+Exampract.cpp
+// exampract.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "Esfera.h"
+
+using namespace std;
+
+void main(){
+	float rad;
+	do{
+	cout<<"Ingrese el radio";
+	cin>>rad;
+	}while(rad<=0);
+	Esfera e1(rad);
+	cout<<"El area de la esfera es: "<<e1.area()<<endl;
+	getch();
+}
+
+2-.
+
+digitos.h
+#pragma once
+class digitos
+{
+private:
+	int num;
+public:
+	digitos(int _num);
+	~digitos(void);
+	int contardigitos();
+};
+
+
+digitos.cpp
+#include "StdAfx.h"
+#include "digitos.h"
+
+
+digitos::digitos(int _num)
+{
+	num=_num;
+}
+
+
+digitos::~digitos(void)
+{
+}
+
+int digitos::contardigitos(){
+	int p=0,d;
+	while(num>0){
+		d=num%10;
+		num=num/10;
+		p++;
+	}
+ 	return p;
+}
+
+ejemdigitos.cpp
+#include "StdAfx.h"
+#include "digitos.h"
+
+
+digitos::digitos(int _num)
+{
+	num=_num;
+}
+
+
+digitos::~digitos(void)
+{
+}
+
+int digitos::contardigitos(){
+	int p=0,d;
+	while(num>0){
+		d=num%10;
+		num=num/10;
+		p++;
+	}
+ 	return p;
+}
+
+3-.
+
+#pragma once
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+class Info
+{
+private: 
+	string nombre;
+	string fecha;
+	int ci;
+
+public:
+	Info(string _nombre, string _fecha, int _ci);
+	~Info(void);
+	string devolver1();
+	string devolver2();
+	int devolver3();
+
+
+};
+
+
+
+#include "StdAfx.h"
+#include "Info.h"
+
+
+Info::Info(string _nombre, string _fecha, int _ci)
+{
+	nombre=_nombre;
+	fecha=_fecha;
+	ci=_ci;
+	
+}
+
+
+Info::~Info(void)
+{
+}
+
+string Info::devolver1(){
+	return nombre;
+	
+}
+string Info::devolver2(){
+	return fecha;
+}
+
+int Info::devolver3(){
+	return ci;
+}
+
+
+// ejemplostring.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "Info.h"
+#include <string>
+
+using namespace std;
+
+void main(){
+	string nom,fecha;
+	int ci;
+	cout<<"Ingrese el nombre: ";
+	getline(cin,nom);
+	cout<<"Ingrese su fecha de nacimiento, literalmente: ";
+	getline(cin,fecha);
+	cout<<"Ingrese su carnet de identidad: ";
+	cin>>ci;
+	Info s1(nom,fecha,ci);
+	cout<<"Su nombre fecha de nacimiento y carnet de identidad es: "<<s1.devolver1()<<s1.devolver2()<<s1.devolver3()<<endl;
+	getch();
+}
+
