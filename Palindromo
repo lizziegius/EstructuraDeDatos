@@ -1,0 +1,68 @@
+.h
+#pragma once
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+class Pal
+{
+private:
+	string cad;
+public:
+	Pal(string _cad);
+	~Pal(void);
+	bool espalindromo();
+};
+.cpp
+#include "StdAfx.h"
+#include "Pal.h"
+#include <string>
+
+using namespace std;
+
+
+Pal::Pal(string _cad)
+{
+	cad=_cad;
+}
+
+
+Pal::~Pal(void)
+{
+}
+
+bool Pal::espalindromo(){
+	int n,j;
+	n=cad.length();
+	j=n-1;
+	for(int i=0;i<(n/2);i++){
+		if(cad[i]!=cad[j]){
+			return false;
+		}
+		j--;
+	}
+	return true;
+}
+
+Main
+#include "stdafx.h"
+#include <iostream>
+#include "Pal.h"
+#include "conio.h"
+
+using namespace std;
+
+void main(){
+	string cad;
+	cout<<"Ingrese la palabra: ";
+	getline(cin,cad);
+	Pal p1(cad);
+	if(p1.espalindromo()==true){
+		cout<<"Es palindromo ";
+	}else{
+		cout<<"No es palindromo";
+	}
+	getch();
+
+}
