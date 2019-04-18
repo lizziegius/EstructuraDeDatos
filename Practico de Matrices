@@ -1,0 +1,698 @@
+Matriz transpuesta
+Matriz1.h
+#pragma once
+
+class Matriz1
+{
+private:
+	int Mat[30][30];
+	int m;
+	int n;
+public:
+	Matriz1(int _m, int _n);
+	~Matriz1(void);
+	void cargar();
+	void mostrar();
+	void mostrar(int A[30][30]);
+	void transpuesta(int M[30][30],int fil,int col);
+	
+};
+
+Matriz1.cpp
+#include "StdAfx.h"
+#include "Matriz1.h"
+#include <iostream>
+
+using namespace std;
+
+Matriz1::Matriz1(int _m, int _n)
+{
+	m=_m;
+	n=_n;
+}
+
+
+Matriz1::~Matriz1(void)
+{
+}
+
+void Matriz1::cargar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"MAT["<<i<<"]["<<j<<"]=";
+			cin>>Mat[i][j];
+		}
+	}
+}
+
+void Matriz1::mostrar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<Mat[i][j];
+		}
+	}
+}
+
+void Matriz1::mostrar(int A[30][30]){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"Mat["<<i<<"]["<<j<<"]="<<A[i][j]<<endl;
+		}
+	}
+
+}
+
+void Matriz1::transpuesta(int M[30][30],int fil,int col){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			M[j][i]=Mat[i][j];
+		}
+	}
+	mostrar(M);
+}
+
+Matriz.cpp
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "Matriz1.h"
+
+using namespace std;
+
+void main(){
+	int B[30][30],m,n;
+	do{
+	cout<<"Ingrese las filas";
+	cin>>m;
+	cout<<"Ingresa las columnas";
+	cin>>n;
+	}while(m!=n);
+	Matriz1 M(m,n);
+	M.cargar();
+	cout<<"La matriz transpuesta: ";
+	M.transpuesta(B,m,n);
+	getch();
+}
+
+Multiplicacion de matrices
+.h
+#pragma once
+class Multi
+{
+private:
+	int Mat[30][30];
+	int m;
+	int n;
+public:
+	Multi();
+	Multi(int _m,int _n);
+	~Multi(void);
+	void cargar();
+	void mostrar();
+    void devolver(int _Mat[30][30]);
+	void multiplicar(int A[30][30],int B[30][30]);
+
+};
+
+.cpp
+#include "StdAfx.h"
+#include "Multi.h"
+#include <iostream>
+
+using namespace std;
+
+Multi::Multi(void)
+{
+	m=0;
+	n=0;
+}
+
+Multi::Multi(int _m,int _n)
+{
+	m=_m;
+	n=_n;
+
+}
+
+
+Multi::~Multi(void)
+{
+}
+
+void Multi::cargar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"Mat["<<i<<"]["<<j<<"]=";
+			cin>>Mat[i][j];
+		}
+	}
+}
+
+void Multi::mostrar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"Mat["<<i<<"]["<<j<<"]="<<Mat[i][j]<<endl;
+		}
+	}
+}
+
+void Multi::devolver(int _Mat[30][30]){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			_Mat[i][j]=Mat[i][j];
+		}
+	}
+}
+
+void Multi::multiplicar(int A[30][30],int B[30][30]){
+	int c,p=0;
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+					Mat[i][j]=0;
+			for(int k=0;k<n;k++){
+					Mat[i][j]=Mat[i][j]+(A[i][k]*B[k][j]);
+			}
+		}
+	}
+}
+
+
+Main
+// Multiplicacionejem.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "Multi.h"
+
+using namespace std;
+
+void main(){
+	int A[30][30],B[30][30],f1,c1;
+	do{
+	cout<<"Ingrese las filas de la Matriz : ";
+	cin>>f1;
+	cout<<"Ingrese columnas de la Matriz : ";
+	cin>>c1;
+	}while(f1!=c1||f1<=0||c1<=0);
+		Multi m1(f1,c1);
+		m1.cargar();
+		m1.devolver(A);
+		Multi m2(f1,c1);
+		m2.cargar();
+		m2.devolver(B);
+		Multi m3(f1,c1);
+		m3.multiplicar(A,B);
+		cout<<"La Matriz es: ";
+		m3.mostrar();
+		getch();
+}
+
+
+Diagonal
+.h
+#pragma once
+class Diagonal
+{
+private:
+	int Mat[30][30];
+	int m;
+	int n;
+public:
+	Diagonal(int _m,int _n);
+	~Diagonal(void);
+	void cargar();
+	void mostrar();
+	void devolver(int A[30][30]);
+	void LlenarDiagonal();
+};
+
+.cpp
+#include "StdAfx.h"
+#include "Diagonal.h"
+#include <iostream>
+
+using namespace std;
+
+Diagonal::Diagonal(int _m,int _n)
+{
+	m=_m;
+	n=_n;
+
+}
+
+
+Diagonal::~Diagonal(void)
+{
+}
+
+void Diagonal::cargar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"MAT["<<i<<"]["<<j<<"]=";
+			cin>>Mat[i][j];
+		}
+	}
+}
+
+void Diagonal::mostrar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"MAT["<<i<<"]["<<j<<"]="<<Mat[i][j]<<endl;
+		}
+	}
+}
+
+void Diagonal::devolver(int A[30][30]){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			A[i][j]=Mat[i][j];
+		}
+	}
+}
+
+void Diagonal::LlenarDiagonal(){
+	for(int i=0;i<m;i++){
+		Mat[i][i]=1;
+	}
+}
+
+Main
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "Diagonal.h"
+
+using namespace std;
+
+void main(){
+	int M[30][30],fil,col;
+	do{
+	cout<<"Ingrese el numero de filas: ";
+	cin>>fil;
+	cout<<"Ingrese el numero de columnas: ";
+	cin>>col;
+	}while(fil<=0,col<=0);
+	Diagonal d(fil,col);
+	d.cargar();
+	d.LlenarDiagonal();
+	cout<<"La matriz es: ";
+	d.mostrar();
+	getch();
+}
+
+Magica
+.h
+#pragma once
+class Magica
+{
+private:
+	int Mat[100][100];
+	int m;
+	int n;
+public:
+	Magica(int _m,int _n);
+	~Magica(void);
+	void cargar();
+	void mostrar();
+	bool Esmagica();
+};
+
+.cpp
+#include "StdAfx.h"
+#include "Magica.h"
+#include <iostream>
+
+using namespace std;
+
+Magica::Magica(int _m,int _n)
+{
+	m=_m;
+	n=_n;
+}
+
+
+Magica::~Magica(void)
+{
+}
+
+void Magica::cargar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"Mat["<<i<<"]["<<j<<"]=";
+			cin>>Mat[i][j];
+		}
+	}
+}
+
+void Magica::mostrar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"Mat["<<i<<"]["<<j<<"]="<<Mat[i][j];
+		}
+	}
+}
+
+bool Magica::Esmagica(){
+	int c,p,d,l,s;
+	c=0,p=0,d=0,l=0,s=0;
+	for(int i=0;i<m;i++){
+		c=c+Mat[0][i];
+	}
+	for(int i=1;i<m;i++){
+		for(int j=0;j<n;j++){
+			p=p+Mat[i][j];
+		}
+		if(p!=c){
+			return false;
+		}
+		p=0;
+	}
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			d=d+Mat[j][i];
+		}
+		if(d!=c){
+			return false;
+		}
+		d=0;
+	}
+	for(int i=0;i<m;i++){
+		l=l+Mat[i][i];
+		if(i==(m-1)){//para	que termine de sumar la diagonal y RECIEN compare
+			if(l!=c){
+				return false;
+			}
+		}
+	}
+	int k=m-1;
+	for(int i=0;i<m;i++){
+		s=s+Mat[i][k];
+		k--;
+		if(i==(m-1)){
+			if(s!=c){
+				return false;
+			}
+		}
+	}
+	return true;
+}
+	
+Main
+// ejemMagica.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "Magica.h"
+
+using namespace std;
+
+void main(){
+	int m,n,A[100][100],res;
+	do{
+		cout<<"Ingrese las filas: ";
+		cin>>m;
+		cout<<"Ingrese las columnas: ";
+		cin>>n;
+	}while(m!=n||m<=0||n<=0);
+	Magica m1(m,n);
+	m1.cargar();
+	res=m1.Esmagica();
+	if(res==true){
+		cout<<"La Matriz es magica";
+	}else{
+		cout<<"La Matriz no es magica";
+	}
+	getch();
+}
+
+Suma
+.h
+#pragma once
+#define MAX 50
+class Suma
+{
+private:
+	int Mat[MAX][MAX];
+	int m,n;
+public:
+	Suma(int _m, int _n);
+	~Suma(void);
+	void cargar();
+	void mostrar();
+	void devolver(int _Mat[MAX][MAX]);
+	void sumar(int A[MAX][MAX], int B[MAX][MAX]);
+};
+
+.cpp
+#include "StdAfx.h"
+#include "Suma.h"
+#include <iostream>
+#define MAX 50
+
+using namespace std;
+
+Suma::Suma(int _m, int _n)
+{
+	m=_m;
+	n=_n;
+}
+
+
+Suma::~Suma(void)
+{
+}
+
+void Suma::cargar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"Mat["<<i<<"]["<<j<<"]= ";
+			cin>>Mat[i][j];
+		}
+	}
+}
+
+void Suma::mostrar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"Mat["<<i<<"]["<<j<<"]=";
+			cout<<Mat[i][j];
+		}
+	}
+}
+
+void Suma::devolver(int _Mat[MAX][MAX]){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			_Mat[i][j]=Mat[i][j];
+		}
+	}
+}
+
+void Suma::sumar(int A[MAX][MAX], int B[MAX][MAX]){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			Mat[i][j]=(A[i][j]+B[i][j]);
+		}
+	}
+}
+
+Main
+
+// ejemsuma.cpp : Defines the entry point for the console application.
+//
+
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "Suma.h"
+
+using namespace std;
+
+
+void main(){
+	int A[50][50], B[50][50], m, n;
+	do{
+		cout<<"Ingrese las filas: ";
+		cin>>m;
+		cout<<"Ingrese las columnas: ";
+		cin>>n;
+	}while(m!=n||m<0||n<0);
+	Suma s1(m,n);
+	Suma s2(m,n);
+	s1.cargar();
+	s2.cargar();
+	s1.devolver(A);
+	s2.devolver(B);
+	Suma s3(m,n);
+	s3.sumar(A,B);
+	s3.mostrar();
+	getch();
+}
+
+
+
+
+
+
+
+
+Sucesiones
+.h
+#pragma once
+#define MAX 100
+class Sucesiones
+{
+private:
+	int M[MAX][MAX];
+	int m,n;
+public:
+	Sucesiones(int _m,int _n);
+	~Sucesiones(void);
+	void mostrar();
+	void sucesion1();
+	void sucesion2();
+	int sumardigitos(int num);
+	void sucesion3();
+};
+
+.cpp
+#include "StdAfx.h"
+#include "Sucesiones.h"
+#include <iostream>
+
+using namespace std;
+
+Sucesiones::Sucesiones(int _m,int _n)
+{
+	m=_m;
+	n=_n;
+}
+
+
+Sucesiones::~Sucesiones(void)
+{
+}
+
+void Sucesiones::mostrar(){
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			cout<<"Mat["<<i<<"]["<<j<<"]= "<<M[i][j];
+		}
+	}
+}
+
+
+void Sucesiones::sucesion1(){
+	int p=0;
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			p=p+3;
+			M[i][j]=p;
+		}
+	}
+}
+
+
+void Sucesiones::sucesion2(){
+	int c=1,p,d,f,res;
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			p=c*c;
+			if(p>9){
+				d=p%10;
+				f=p/10;
+				res=(d*10)+f;
+				M[i][j]=res;
+			}else{
+				M[i][j]=p;
+			}
+				c++;
+		}
+	}
+}
+
+int Sucesiones::sumardigitos(int num){
+	int d,s=0;
+	while(num>0){
+		d=num%10;
+		num=num/10;
+		s=s+d;
+	}
+	return s;
+}
+
+
+
+void Sucesiones::sucesion3(){
+	int d=1,num=0;
+	for(int i=0;i<m;i++){
+		for(int j=0;j<n;j++){
+			if((i==0)&&(j==0)){
+				M[i][j]=1;
+			}else{
+			num=num+d;
+			d=sumardigitos(num);
+			M[i][j]=num;
+		}
+	}
+}
+}
+
+Main
+#include "stdafx.h"
+#include <iostream>
+#include "conio.h"
+#include "Sucesiones.h"
+
+using namespace std;
+
+void main(){
+	int m,n,opcion;
+	do{
+		cout<<"Ingrese las filas: ";
+		cin>>m;
+		cout<<"Ingrese las columnas: ";
+		cin>>n;
+	}while(m<0||n<0);
+	do{
+		cout<<"----MENU----"<<endl;
+		cout<<"1.Sucesion1"<<endl;
+		cout<<"2.Sucesion2"<<endl;
+		cout<<"3.Sucesion3"<<endl;
+		cout<<"4.mostrar"<<endl;
+		cout<<"0.Salir"<<endl;
+		cout<<"Opcion";
+		cin>>opcion;
+		Sucesiones s1(m,n);
+		switch(opcion){
+		case 1:
+			s1.sucesion1();
+			s1.mostrar();
+			break;
+		case 2:
+			s1.sucesion2();
+			s1.mostrar();
+			break;
+		case 3: 
+			s1.sucesion3();
+			s1.mostrar();
+			break;
+		case 4:
+			s1.mostrar();
+			break;
+		case 0:
+			cout<<"Saliendo del menu";
+			break;
+		default:
+			cout<<"Opcion no valida";
+			break;
+		}
+		getch();
+		system("cls");
+	}while(opcion!=0);
+	getch();
+}
